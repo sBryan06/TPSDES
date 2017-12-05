@@ -1,0 +1,18 @@
+
+public class Cryptage {
+	String binaryCharToCrypt;
+
+	public String getBinaryCharToCrypt() {
+		return binaryCharToCrypt;
+	}
+
+	public void setBinaryCharToCrypt(String chaineBinaire) {
+		this.binaryCharToCrypt = chaineBinaire;
+	}
+
+	public Cryptage(char c) {
+		this.binaryCharToCrypt = Convert.charToBinaryString(c);
+	}
+	
+
+}

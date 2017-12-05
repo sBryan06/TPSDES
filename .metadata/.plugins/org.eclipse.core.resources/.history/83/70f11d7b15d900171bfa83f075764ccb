@@ -1,0 +1,6 @@
+
+public class Convert {
+	public static String charToBinaryString(char c) {
+		return Integer.toBinaryString(c);
+	}
+}

@@ -1,0 +1,11 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		GenerateKey gk = new GenerateKey("1111011001");
+		
+		Cryptage crypt = new Cryptage('A');
+		System.out.println(crypt.getBinaryCharToCrypt());
+	}
+
+}

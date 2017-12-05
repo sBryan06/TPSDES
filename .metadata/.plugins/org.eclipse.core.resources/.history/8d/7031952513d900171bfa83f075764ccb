@@ -1,0 +1,8 @@
+
+public class Cryptage {
+
+	public Cryptage() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

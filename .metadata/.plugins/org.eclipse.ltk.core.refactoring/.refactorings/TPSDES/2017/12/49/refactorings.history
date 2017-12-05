@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;generateKey.java&apos; to &apos;GenerateKey.java&apos;&#x0A;- Original project: &apos;TPSDES&apos;&#x0A;- Original element: &apos;generateKey.java&apos;&#x0A;- Renamed element: &apos;GenerateKey.java&apos;" description="Rename compilation unit &apos;generateKey.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{generateKey.java" name="GenerateKey.java" references="false" stamp="1512405225857" version="1.0"/>
+</session>

@@ -12,9 +12,9 @@ public class GenerateKey {
 		cle1 = new Vector<Integer>();
 		cle2 = new Vector<Integer>();
 		this.initCle(c);
-		this.afficheCle("Cle", cle);
+		// this.afficheCle("Cle", cle);
 		this.IPcle();
-		this.afficheCle("Cle", cle);
+		// this.afficheCle("Cle", cle);
 		this.genererCle1();
 		this.genererCle2();
 		

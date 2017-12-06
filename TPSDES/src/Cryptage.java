@@ -1,10 +1,10 @@
 import java.util.Vector;
 
 public class Cryptage {
-	
+	GenerateKey key;
 	private Vector<Integer> binaryCharToCrypt;
-	private int[][] S0;
-	private int[][] S1;
+	private int[][] s0;
+	private int[][] s1;
 	
 	public Vector<Integer> getBinaryCharToCrypt() {
 		return binaryCharToCrypt;
@@ -14,7 +14,8 @@ public class Cryptage {
 		this.binaryCharToCrypt = binaryCharToCrypt;
 	}
 
-	public Cryptage(char c) {
+	public Cryptage(String key, char c) {
+		this.key = new GenerateKey(key);
 		this.initS0();
 		this.initS1();
 		String str = Convert.charToBinaryString(c);
@@ -23,11 +24,49 @@ public class Cryptage {
 	}
 	
 	public void initS0() {
+		s0 = new int[4][4];
+		s0[0][0] = 1;
+		s0[0][1] = 0;
+		s0[0][2] = 3;
+		s0[0][3] = 2;
 		
+		s0[1][0] = 3;
+		s0[1][1] = 2;
+		s0[1][2] = 1;
+		s0[1][3] = 0;
+		
+		s0[2][0] = 0;
+		s0[2][1] = 2;
+		s0[2][2] = 1;
+		s0[2][3] = 3;
+		
+		s0[3][0] = 3;
+		s0[3][1] = 1;
+		s0[3][2] = 3;
+		s0[3][3] = 2;
 	}
 	
 	public void initS1() {
+		s1 = new int[4][4];
+		s1[0][0] = 0;
+		s1[0][1] = 1;
+		s1[0][2] = 2;
+		s1[0][3] = 3;
 		
+		s1[1][0] = 2;
+		s1[1][1] = 0;
+		s1[1][2] = 1;
+		s1[1][3] = 3;
+		
+		s1[2][0] = 3;
+		s1[2][1] = 0;
+		s1[2][2] = 1;
+		s1[2][3] = 0;
+		
+		s1[3][0] = 2;
+		s1[3][1] = 1;
+		s1[3][2] = 0;
+		s1[3][3] = 3;
 	}
 	
 	public void IP(){
@@ -57,5 +96,14 @@ public class Cryptage {
 	
 	public void fonctionF(Vector<Integer> cle, Vector<Integer> vect) {
 		
+	}
+	
+	public Vector<Integer> p4(int a, int b, int c, int d){
+		Vector<Integer> res = new Vector<Integer>();
+		res.addElement(b);
+		res.addElement(d);
+		res.addElement(c);
+		res.addElement(a);
+		return res;
 	}
 }

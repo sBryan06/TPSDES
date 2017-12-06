@@ -18,4 +18,12 @@ public class Convert {
 		}
 		return res;
 	}
+	
+	public static int binaryStringToInt(String str) {
+		return Integer.parseUnsignedInt(str, 2);
+	}
+	
+	public static String intToBinaryString(int a) {
+		return Integer.toBinaryString(a);
+	}
 }

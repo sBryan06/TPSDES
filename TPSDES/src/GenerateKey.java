@@ -5,7 +5,33 @@ public class GenerateKey {
 	Vector<Integer> cle;
 	Vector<Integer> cle1;
 	Vector<Integer> cle2;
+	
+	/**
+	 * ACCESSEURS
+	 */
+	public Vector<Integer> getCle1() {
+		return cle1;
+	}
 
+
+	public void setCle1(Vector<Integer> cle1) {
+		this.cle1 = cle1;
+	}
+
+
+	public Vector<Integer> getCle2() {
+		return cle2;
+	}
+
+
+	public void setCle2(Vector<Integer> cle2) {
+		this.cle2 = cle2;
+	}
+
+	/**
+	 * Constructeur
+	 * @param c
+	 */
 	public GenerateKey(String c) {
 		// TODO Auto-generated constructor stub
 		cle = new Vector<Integer>();

@@ -3,6 +3,7 @@ import java.util.Vector;
 public class Cryptage {
 	GenerateKey key;
 	private Vector<Integer> binaryCharToCrypt;
+	private Vector<Integer> resultat;
 	private int[][] s0;
 	private int[][] s1;
 	
@@ -20,6 +21,7 @@ public class Cryptage {
 		this.initS1();
 		String str = Convert.charToBinaryString(c);
 		this.binaryCharToCrypt = new Vector<Integer>();
+		this.resultat = new Vector<Integer>();
 		this.binaryCharToCrypt = Convert.stringToVectorInteger(str);
 		
 		System.out.println(this.getBinaryCharToCrypt());
@@ -190,5 +192,10 @@ public class Cryptage {
 		System.out.println(v);
 		v = this.p4(v);
 		System.out.println(v);
+	}
+	
+	public void fonctionFK(Vector<Integer> g, Vector<Integer> g, Vector<Integer> key) {
+		Vector<Integer> gauche = this.fonctionF(d, key);
+		
 	}
 }

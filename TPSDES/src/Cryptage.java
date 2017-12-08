@@ -16,38 +16,43 @@ public class Cryptage {
 	}
 
 	public Cryptage(String key, char c) {
+		System.out.println("Cryptage de la lettre '" + c +"' avec la cle: " + key);
+		System.out.println("-------------------------------------------------");
 		this.key = new GenerateKey(key);
 		this.initS0();
 		this.initS1();
 		String str = Convert.charToBinaryString(c);
 		this.binaryCharToCrypt = new Vector<Integer>();
 		this.resultat = new Vector<Integer>();
+		
 		this.binaryCharToCrypt = Convert.stringToVectorInteger(str);
 		
-		System.out.println(this.getBinaryCharToCrypt());
+		System.out.println("Transformation en binaire:" + this.getBinaryCharToCrypt());
 		
 		this.IP();
+		// System.out.println(this.getBinaryCharToCrypt());
 		
-		System.out.println(this.getBinaryCharToCrypt());
-		
-		System.out.println("fk first time");
+		// System.out.println("fk first time");
 		this.resultat = this.fonctionFK(this.get4BitsGauche(this.binaryCharToCrypt), 
 				this.get4BitsDroits(this.binaryCharToCrypt), this.key.getCle1());
-		System.out.println(this.resultat);
+		// System.out.println(this.resultat);
 		
-		System.out.println("SW");
+		// System.out.println("SW");
 		this.resultat = this.SW(this.resultat);
-		System.out.println(this.resultat);
+		// System.out.println(this.resultat);
 		
-		System.out.println("fk second time");
+		// System.out.println("fk second time");
 		this.resultat = this.fonctionFK(this.get4BitsGauche(this.resultat),
 				this.get4BitsDroits(this.resultat),
 				this.key.getCle2());
-		System.out.println(this.resultat);
+		// System.out.println(this.resultat);
 		
-		System.out.println("IP-1");
+		// System.out.println("IP-1");
 		this.IPEnd();
-		System.out.println(this.resultat);
+		System.out.println("resultat: " + this.resultat);
+		System.out.println("-------------------------------------------------");
+		System.out.println();
+		System.out.println();
 	}
 	
 	public void initS0() {
@@ -229,7 +234,7 @@ public class Cryptage {
 		// System.out.println("droite: " + d);
 		Vector<Integer> res = new Vector<Integer>();
 		res = this.ouExclusif(g, this.fonctionF(d, key));
-		System.out.println("res: " + res);
+		// System.out.println("res: " + res);
 		
 		for (int i=0; i < d.size(); i++) {
 			res.addElement(d.elementAt(i));

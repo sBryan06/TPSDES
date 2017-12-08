@@ -44,9 +44,9 @@ public class GenerateKey {
 		this.genererCle1();
 		this.genererCle2();
 		
-		this.afficheCle("Cle 1", cle1);
+		this.afficheCle("K1", cle1);
 		
-		this.afficheCle("Cle 2", cle2);
+		this.afficheCle("K2", cle2);
 	}
 	
 	

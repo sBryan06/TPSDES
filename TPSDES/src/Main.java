@@ -7,6 +7,8 @@ public class Main {
 		Cryptage crypt = new Cryptage("1111011001", 'A');
 		// System.out.println(crypt.getBinaryCharToCrypt());
 		// System.out.println(Integer.parseInt(crypt.getBinaryCharToCrypt(),2));
+		
+		Cryptage crypt2 = new Cryptage("1111011001", 'e');
 	}
 
 }

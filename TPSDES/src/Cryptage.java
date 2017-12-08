@@ -30,7 +30,24 @@ public class Cryptage {
 		
 		System.out.println(this.getBinaryCharToCrypt());
 		
-		this.fonctionF(this.get4BitsDroits(this.binaryCharToCrypt), this.key.getCle1());
+		System.out.println("fk first time");
+		this.resultat = this.fonctionFK(this.get4BitsGauche(this.binaryCharToCrypt), 
+				this.get4BitsDroits(this.binaryCharToCrypt), this.key.getCle1());
+		System.out.println(this.resultat);
+		
+		System.out.println("SW");
+		this.resultat = this.SW(this.resultat);
+		System.out.println(this.resultat);
+		
+		System.out.println("fk second time");
+		this.resultat = this.fonctionFK(this.get4BitsGauche(this.resultat),
+				this.get4BitsDroits(this.resultat),
+				this.key.getCle2());
+		System.out.println(this.resultat);
+		
+		System.out.println("IP-1");
+		this.IPEnd();
+		System.out.println(this.resultat);
 	}
 	
 	public void initS0() {
@@ -136,15 +153,27 @@ public class Cryptage {
 	}
 	
 	public String passerDansS0(String ligne, String colone) {
+		StringBuilder temp = new StringBuilder();
 		int l = Convert.binaryStringToInt(ligne);
 		int c = Convert.binaryStringToInt(colone);
-		return Convert.intToBinaryString(this.s0[l][c]);
+		String str = Convert.intToBinaryString(this.s0[l][c]);
+		if (str.length() < 2) {
+			temp.append("0");
+		}
+		temp.append(str);
+		return temp.toString();
 	}
 	
 	public String passerDansS1(String ligne, String colone) {
+		StringBuilder temp = new StringBuilder();
 		int l = Convert.binaryStringToInt(ligne);
 		int c = Convert.binaryStringToInt(colone);
-		return Convert.intToBinaryString(this.s1[l][c]);
+		String str = Convert.intToBinaryString(this.s1[l][c]);
+		if (str.length() < 2) {
+			temp.append("0");
+		}
+		temp.append(str);
+		return temp.toString();
 	}
 	
 	public Vector<Integer> p4(Vector<Integer> vect){
@@ -156,7 +185,7 @@ public class Cryptage {
 		return res;
 	}
 	
-	public void fonctionF(Vector<Integer> vect, Vector<Integer> cle) {
+	public Vector<Integer> fonctionF(Vector<Integer> vect, Vector<Integer> cle) {
 		// System.out.println(vect);
 		int bit0 = vect.elementAt(0);
 		int bit1 = vect.elementAt(1);
@@ -185,17 +214,53 @@ public class Cryptage {
 		col.append(v.elementAt(5));
 		col.append(v.elementAt(6));
 		temp.append(this.passerDansS1(lig.toString(), col.toString()));
-		System.out.println(temp.toString());
 		// v = new Vector<Integer>();
 		// on reconstruit le resultat des SBox
 		v = Convert.stringToVectorInteger(temp.toString());
-		System.out.println(v);
+		// System.out.println(v);
 		v = this.p4(v);
-		System.out.println(v);
+		// System.out.println(v);
+		
+		return v;
 	}
 	
-	public void fonctionFK(Vector<Integer> g, Vector<Integer> g, Vector<Integer> key) {
-		Vector<Integer> gauche = this.fonctionF(d, key);
+	public Vector<Integer> fonctionFK(Vector<Integer> g, Vector<Integer> d, Vector<Integer> key) {
+		// System.out.println("gauche: " + g);
+		// System.out.println("droite: " + d);
+		Vector<Integer> res = new Vector<Integer>();
+		res = this.ouExclusif(g, this.fonctionF(d, key));
+		System.out.println("res: " + res);
 		
+		for (int i=0; i < d.size(); i++) {
+			res.addElement(d.elementAt(i));
+		}
+		
+		return res;
+	}
+	
+	/**
+	 * Inverse les 4 bits de droits avec les 4 bits de gauche
+	 */
+	public Vector<Integer> SW(Vector<Integer> vect){
+		Vector<Integer> res = new Vector<Integer>();
+		Vector<Integer> temp = new Vector<Integer>();
+		res = this.get4BitsDroits(vect);
+		
+		for (int i=0; i < this.get4BitsGauche(vect).size(); i++) {
+			res.addElement(this.get4BitsGauche(vect).elementAt(i));
+		}
+		return res;
+	}
+	
+	public void IPEnd() {
+		Vector<Integer> copie = (Vector<Integer>)this.resultat.clone();
+		this.resultat.set(0, copie.elementAt(3));
+		this.resultat.set(1, copie.elementAt(0));
+		this.resultat.set(2, copie.elementAt(2));
+		this.resultat.set(3, copie.elementAt(4));
+		this.resultat.set(4, copie.elementAt(6));
+		this.resultat.set(5, copie.elementAt(1));
+		this.resultat.set(6, copie.elementAt(7));
+		this.resultat.set(7, copie.elementAt(5));
 	}
 }
